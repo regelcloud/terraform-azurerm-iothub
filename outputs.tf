@@ -1,3 +1,3 @@
-output "id" {
-  value = azurerm_iothub.iothub.id
-}
+# output "id" {
+#   value = azurerm_iothub.iothub.id
+# }
