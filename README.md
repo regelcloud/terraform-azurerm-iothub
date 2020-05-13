@@ -22,7 +22,6 @@ module "iothub" {
 
 
 Advanced Usgae:
-
 ```
 module "iothub" {
   source = "../modules/azurerm_iothub"
