@@ -20,7 +20,7 @@ module "iothub" {
 
 }
 
-
+```
 Advanced Usgae:
 ```
 module "iothub" {
