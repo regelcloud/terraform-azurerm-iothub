@@ -20,7 +20,6 @@ variable "sku" {
   type = map
   default = {
       name =  ""
-      tier  =  ""
       capacity  = ""
   }
 }
@@ -33,14 +32,12 @@ variable "tags" {
   }
 
 variable "event_hub_retention_in_days" {
-  default = 1
-  type = number
+  default = "1"
   description = "(Optional) The event hub retention to use in days. Must be between 1 and 7."
 }
 
 variable "event_hub_partition_count" {
-    default =  2
-    type =  number
+    default =  "2"
     description  = "(Optional) The number of device-to-cloud partitions used by backing event hubs. Must be between 2 and 128."
 }
 
@@ -61,8 +58,8 @@ variable "endpoints" {
     type              = ""
     connection_string = ""
     name              = ""
-    batch_frequency_in_seconds = 60
-    max_chunk_size_in_bytes    = 10485760
+    batch_frequency_in_seconds = "60"
+    max_chunk_size_in_bytes    = "10485760"
     container_name             = ""
     encoding                   = "Avro"
     file_name_format           = "{iothub}/{partition}_{YYYY}_{MM}_{DD}_{HH}_{mm}"
@@ -130,10 +127,10 @@ variable "file_upload" {
   default = [{
       connection_string = ""
       container_name = ""
-      sas_ttl = 1
+      sas_ttl = "1"
       notifications = false
-      lock_duration = 1
-      default_ttl = 1
-      max_delivery_count = 10
+      lock_duration = "1"
+      default_ttl = "1"
+      max_delivery_count = "10"
   }]
 }
