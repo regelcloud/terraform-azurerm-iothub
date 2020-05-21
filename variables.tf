@@ -33,6 +33,7 @@ variable "tags" {
 
 variable "event_hub_retention_in_days" {
   default = "1"
+  type = string
   description = "(Optional) The event hub retention to use in days. Must be between 1 and 7."
 }
 
@@ -133,4 +134,78 @@ variable "file_upload" {
       default_ttl = "1"
       max_delivery_count = "10"
   }]
+}
+variable "linked_hub_apply_allocation_policy" {
+  default = false
+  type =  bool
+}
+
+variable "linked_hub_allocation_weight" {
+  default = 1
+  type =  number
+}
+
+variable "linked_hub_connection_string" {
+  default = ""
+}
+
+variable "linked_hub_location" {
+  default = ""
+}
+
+
+
+variable "endpoint_eventhub" {
+  type = map
+  default = {
+    connection_string  = ""
+  }
+}
+
+variable "endpoint_servicebus_queue" {
+  type = map
+  default = {
+    connection_string = ""
+  }
+}
+
+variable "endpoint_servicebus_topic" {
+  type = map
+  default = {
+    connection_string = ""
+  }
+}
+
+variable "storage_account" {
+  type = map
+  default= {
+    primary_blob_connection_string = ""
+  }
+}
+
+
+variable "fallback_route_endpoint_names" {
+  type = list
+  default = []
+}
+
+
+variable "route_endpoint_names" {
+  type = list
+  default = []
+}
+
+variable "route_source" {
+  default = "DeviceMessages"
+  #  Allowd  Values= "DeviceJobLifecycleEvents, DeviceLifecycleEvents ,DeviceMessages"
+}
+
+variable "certificate_file" {
+  default = ""
+  description = "DPS certificate file path"
+}
+
+
+variable "dps_sku_name" {
+  default = "B1"
 }
