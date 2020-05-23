@@ -5,7 +5,7 @@ How to use:
 # terraform plan
 # terraform  apply
 ```
-usgae:
+Basic Usgae:
 ```
 module "iothub" {
   source = "../modules/azurerm_iothub"
