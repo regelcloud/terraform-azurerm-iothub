@@ -1,9 +1,10 @@
 # Terraform module for Azure IoTHub
 How to use:
-`# terraform init`
-`# terraform plan`
-`# terraform  apply`
-
+```
+# terraform init
+# terraform plan
+# terraform  apply
+```
 usgae:
 ```
 module "iothub" {
