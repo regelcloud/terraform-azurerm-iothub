@@ -6,16 +6,14 @@ usgae:
 module "iothub" {
   source = "../modules/azurerm_iothub"
   resource_group_name =  "iothub-resources"
-  location =  "Canada Central"
-  name = "test-iot-sample-99"
-  sku = {
-    name = "S1"
-    tier = "Standard"
-    capacity = "1"
-  }
+  location =  "East Asia"
+  name = "sampleiotapp"
+  sku_name = "S1"
+  sku_capacity = "1"
+
   tags = {
-      name = "test"
-      environment =  "testing"
+      name = "IoTHub"
+      environment =  "Development"
   }
 
 }
@@ -26,19 +24,10 @@ Advanced Usgae:
 module "iothub" {
   source = "../modules/azurerm_iothub"
   resource_group_name =  "iothub-resources"
-  location =  "Canada Central"
-  name = "test-iot-sample-99"
-  sku = {
-    name = "S1"
-    tier = "Standard"
-    capacity = "1"
-  }
-  
-  tags = {
-      name = "test"
-      environment =  "testing"
-      purpose = "12 test"
-  }
+  location =  "East Asia"
+  name = "sampleiotapp"
+  sku_name = "S1"
+  sku_capacity = "1"
 
 
 endpoints = [
