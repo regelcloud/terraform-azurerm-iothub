@@ -1,4 +1,4 @@
-#Terraform module for Azure IoTHub
+# Terraform module for Azure IoTHub
 How to use:
 `# terraform init`
 `# terraform plan`
