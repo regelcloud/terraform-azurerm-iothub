@@ -3,7 +3,7 @@ resource "azurerm_iothub_fallback_route" "fallback_route" {
   iothub_name         = azurerm_iothub.iothub.name
 
   condition      = "true"
-  endpoint_names = var.fallback_route_endpoint_names
+  endpoint_names = [azurerm_iothub_endpoint_storage_container.endpoint_storage_container.name]
   enabled        = true
 }
 

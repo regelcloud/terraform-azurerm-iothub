@@ -1,5 +1,5 @@
 resource "azurerm_iothub_shared_access_policy" "shared_access_policy" {
-  name                = "${var.name}-shared_access_policy"
+  name                = "sharedaccesspolicy${random_string.random.result}"
   resource_group_name = azurerm_resource_group.iothub.name
   iothub_name         = azurerm_iothub.iothub.name
 

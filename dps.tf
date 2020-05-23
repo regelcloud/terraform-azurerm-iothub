@@ -1,20 +1,36 @@
 resource "azurerm_iothub_dps" "dps" {
-  name                = "${var.name}-dps"
+  name                = "dps${random_string.random.result}"
   resource_group_name = azurerm_resource_group.iothub.name
   location            = azurerm_resource_group.iothub.location
+  ##########################################
+  ###dps is availabile in  below regions #####
+  ### 'eastus,westus,westeurope,northeurope,southeastasia,eastasia,
+  ###  australiaeast,australiasoutheast,japanwest,japaneast,ukwest,
+  ### uksouth,eastus2,centralus,westus2,westcentralus,northcentralus,southcentralus'
+  ##########################################
+  # location              = 
 
   sku {
     name     = var.dps_sku_name
-    capacity = var.sku.capacity
+    capacity = var.dps_sku_capacity
   }
 
-  linked_hub {
-      connection_string = var.linked_hub_connection_string
-      location = var.linked_hub_location
-      apply_allocation_policy = var.linked_hub_apply_allocation_policy
-      allocation_weight = var.linked_hub_allocation_weight
-      hostname = azurerm_iothub.iothub.hostname
-  }
+  # dynamic "linked_hub" {
+  #   for_each =  var.linked_hubs == [] ? [] : [for r in var.linked_hubs: {
+  #       connection_string           = r.connection_string
+  #       location                    = r.location
+  #       apply_allocation_policy     = r.apply_allocation_policy
+  #       allocation_weight           = r.allocation_weight
+  #       hostname                    = r.hostname
+  #   }]
+  #     content {
+  #       connection_string           = linked_hub.value.connection_string
+  #       location         = linked_hub.value.location
+  #       apply_allocation_policy      = linked_hub.value.apply_allocation_policy
+  #       allocation_weight = linked_hub.value.allocation_weight
+  #       hostname        = linked_hub.value.hostname
+  #   }
+  #   }
 }
 
 output "dps_id" {
@@ -36,4 +52,3 @@ output "dps_id_scope" {
 output "dps_service_operations_host_name" {
   value = azurerm_iothub_dps.dps.service_operations_host_name
 }
-

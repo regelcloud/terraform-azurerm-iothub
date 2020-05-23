@@ -16,13 +16,14 @@ variable "name" {
 # tier - (Required) The billing tier for the IoT Hub. Possible values are Free or Standard.
 # capacity - (Required) The number of provisioned IoT Hub units.
 
-variable "sku" {
-  type = map
-  default = {
-      name =  ""
-      capacity  = ""
-  }
+variable "sku_name" {
+  type  = string
 }
+
+variable "sku_capacity" {
+  type  = string
+}
+
 
 ## tags for resources
 variable "tags" {
@@ -72,13 +73,14 @@ variable "endpoints" {
 
 variable "routes" {
     type  = list
-    default = [{
-        name           = ""
-        source         = ""
-        condition      = true
-        endpoint_names = [""]
-        enabled        = true
-    }]
+    default = null
+    # default = [{
+    #     name           = ""
+    #     source         = ""
+    #     condition      = true
+    #     endpoint_names = [""]
+    #     enabled        = true
+    # }]
 }
 
 # An ip_filter_rule block supports the following:
@@ -86,13 +88,14 @@ variable "routes" {
 # ip_mask - (Required) The IP address range in CIDR notation for the rule.
 # action - (Required) The desired action for requests captured by this rule. Possible values are Accept, Reject
 
-variable "ip_filter_rule" {
-  type = map
-  default  =  {
-      name = "Allow ALL"
-      ip_mask =  "0.0.0.0/0"
-      action =  "Accept"
-  }
+variable "ip_filter_rules" {
+  type = list
+  default = null
+  # default  =  {
+  #     name = "Allow ALL"
+  #     ip_mask =  "0.0.0.0/0"
+  #     action =  "Accept"
+  # }
 }
 
 
@@ -104,12 +107,13 @@ variable "ip_filter_rule" {
 
 variable "fallback_route" {
   type  =  list
-  default  = [ {
-      source = ""
-      condition = true
-      endpoint_names =  [""]
-      enabled = false
-  }]
+  default = null
+  # default  = [ {
+  #     source = ""
+  #     condition = true
+  #     endpoint_names =  [""]
+  #     enabled = false
+  # }]
 }
 
 
@@ -135,32 +139,33 @@ variable "file_upload" {
       max_delivery_count = "10"
   }]
 }
-variable "linked_hub_apply_allocation_policy" {
-  default = false
-  type =  bool
+
+variable "linked_hubs" {
+  type = list
+  default = []
+  # default = [{
+
+  # }]
 }
 
-variable "linked_hub_allocation_weight" {
-  default = 1
-  type =  number
-}
+# variable "linked_hub_apply_allocation_policy" {
+#   default = false
+#   type =  bool
+# }
 
-variable "linked_hub_connection_string" {
-  default = ""
-}
+# variable "linked_hub_allocation_weight" {
+#   default = ""
+#   # type =  number
+# }
 
-variable "linked_hub_location" {
-  default = ""
-}
+# variable "linked_hub_connection_string" {
+#   default = ""
+# }
 
+# variable "linked_hub_location" {
+#   default = ""
+# }
 
-
-variable "endpoint_eventhub" {
-  type = map
-  default = {
-    connection_string  = ""
-  }
-}
 
 variable "endpoint_servicebus_queue" {
   type = map
@@ -207,5 +212,15 @@ variable "certificate_file" {
 
 
 variable "dps_sku_name" {
-  default = "B1"
+  default = "S1"
+  type = string
+}
+
+variable "dps_sku_capacity" {
+  type = string
+  default = "1"
+}
+
+variable "route_condition" {
+  default = true
 }
